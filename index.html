@@ -32,7 +32,7 @@ var user  = [
 				'Rizki'
 			];
 function arisan(){
-  if(user.length > 1){
+  if(user.length > 0){
 	index = Math.floor(Math.random() * user.length);
     document.getElementById('user').innerHTML = user.splice(index,1);
   }else{
