@@ -5,33 +5,43 @@
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <style>
+    .center {
+      margin: auto;
+      width: 60%;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <button onclick="arisan()">Kocok</button>
-  <label id="user" class="animated bounce delay-2s"></label>
+  <div class="center">
+    <h1 id="user" class="test">Example</h1>
+    <button onclick="arisan(); animateCSS('.test', 'bounce')">Kocok</button>
+  </div>
 <script>
 var user  = [
-    			'Anna',
-				'Annisa',
-				'Nurin',
-				'Intan',
-				'Feryal',
-				'NFHO',
-				'nadya',
-				'Ruslan No Limit',
-				'Irvan',
-				'Winda',
-				'BEBEN',
-				'Lia',
-				'wulan',
-				'silvi',
-				'Yeye',
-				'Irvan Maul',
-				'Yeni',
-				'Ai',
-				'Naura',
-				'Rizki'
-			];
+		'Anna',
+			'Annisa',
+			'Nurin',
+			'Intan',
+			'Feryal',
+			'NFHO',
+			'nadya',
+			'Ruslan No Limit',
+			'Irvan',
+			'Winda',
+			'BEBEN',
+			'Lia',
+			'wulan',
+			'silvi',
+			'Yeye',
+			'Irvan Maul',
+			'Yeni',
+			'Ai',
+			'Naura',
+			'Rizki'
+		];
 function arisan(){
   if(user.length > 0){
 	index = Math.floor(Math.random() * user.length);
@@ -39,6 +49,20 @@ function arisan(){
   }else{
     document.getElementById('user').innerHTML = "The End";
   }
+}
+  
+function animateCSS(element, animationName, callback) {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName)
+        node.removeEventListener('animationend', handleAnimationEnd)
+
+        if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
 }
 </script>
 </body>
