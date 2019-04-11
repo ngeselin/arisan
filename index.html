@@ -18,7 +18,7 @@
 <body>
   <div class="center">
      <h1 id="user" class="test">Arisan</h1>
-    <button type="button" class="btn btn-default" onclick="arisan();">Kocok</button>
+    <button type="button" class="btn btn-default" onclick="arisan();" id="btnKocok">Kocok</button>
     <ul class="list-group" style="margin-top:20px"></ul>
   </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -50,6 +50,7 @@
     
 function arisan(){
   if(user.length > 0){
+    $("#btnKocok").attr("disabled", true);
     var run = setInterval(function(){
         index = Math.floor(Math.random() * user.length);
         name  = user[index];
@@ -58,6 +59,7 @@ function arisan(){
     setTimeout(function(){
       clearTimeout(run);
       user.splice(index,1);
+      $("#btnKocok").attr("disabled", false);
       $('.list-group').append('<li class="list-group-item">'+name+'</li>');
       setTimeout(function(){animateCSS('.test', 'tada')},300);
     },2000);
