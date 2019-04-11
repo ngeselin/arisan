@@ -19,58 +19,61 @@
   <div class="center">
      <h1 id="user" class="test">Arisan</h1>
     <button type="button" class="btn btn-default" onclick="arisan();">Kocok</button>
+    <ul class="list-group" style="margin-top:20px"></ul>
   </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-  var   kocok  = [];
+  var   index  = '',
+        name   = '';
   const user   = [
-    			'Anna',
-				'Annisa',
-				'Nurin',
-				'Intan',
-				'Feryal',
-				'NFHO',
-				'nadya',
-				'Ruslan No Limit',
-				'Irvan',
-				'Winda',
-				'BEBEN',
-				'Lia',
-				'wulan',
-				'silvi',
-				'Yeye',
-				'Irvan Maul',
-				'Yeni',
-				'Ai',
-				'Naura',
-				'Rizki'
-			];
+			'Anna',
+			'Annisa',
+			'Nurin',
+			'Intan',
+			'Feryal',
+			'NFHO',
+			'nadya',
+			'Ruslan No Limit',
+			'Irvan',
+			'Winda',
+			'BEBEN',
+			'Lia',
+			'wulan',
+			'silvi',
+			'Yeye',
+			'Irvan Maul',
+			'Yeni',
+			'Ai',
+			'Naura',
+			'Rizki'
+		];
     
 function arisan(){
-  var run = setInterval(function(){
-    if(kocok.length > 0){
-      index = Math.floor(Math.random() * kocok.length);
-      document.getElementById('user').innerHTML = kocok.splice(index,1);
-    }else{
-      kocok = kocok.concat(user);
-    }                 
-  }, 10);
-  setTimeout(function(){
-    clearTimeout(run);
-    setTimeout(function(){animateCSS('.test', 'tada')},300);
-  },2000);
+  if(user.length > 0){
+    var run = setInterval(function(){
+        index = Math.floor(Math.random() * user.length);
+        name  = user[index];
+        document.getElementById('user').innerHTML = name;                
+    }, 10);
+    setTimeout(function(){
+      clearTimeout(run);
+      user.splice(index,1);
+      $('.list-group').append('<li class="list-group-item">'+name+'</li>');
+      setTimeout(function(){animateCSS('.test', 'tada')},300);
+    },2000);
+  }else{
+    document.getElementById('user').innerHTML = 'The End';
+  }
 }
   
 function animateCSS(element, animationName, callback) {
     const node = document.querySelector(element)
     node.classList.add('animated', animationName)
-
     function handleAnimationEnd() {
         node.classList.remove('animated', animationName)
         node.removeEventListener('animationend', handleAnimationEnd)
-
         if (typeof callback === 'function') callback()
     }
-
     node.addEventListener('animationend', handleAnimationEnd)
 }
 </script>
